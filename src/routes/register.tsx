@@ -9,7 +9,7 @@ export const Route = createFileRoute("/register")({
 
 function RegisterPage() {
   return (
-    <div className="min-h-screen w-full flex bg-white font-[system-ui]">
+    <div className="min-h-screen w-full flex bg-white">
       <KanbanPreview />
       <RegisterForm />
     </div>
