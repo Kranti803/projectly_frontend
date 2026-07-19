@@ -7,7 +7,7 @@ export function PasswordStrengthBar({ password }: { password: string }) {
   if (!password) return null;
 
   return (
-    <div className="flex items-center gap-2 mt-1.5 border-2 border-red-700">
+    <div className="flex items-center gap-2 mt-1.5">
       <div className="flex-1 flex gap-1">
         {[0, 1, 2, 3].map((i) => (
           <div

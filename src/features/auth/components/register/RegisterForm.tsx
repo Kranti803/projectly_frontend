@@ -14,7 +14,7 @@ import {
   registerSchema,
   type RegisterFormValues,
 } from "@/features/auth/schemas/register.schema";
-import { PasswordStrengthBar } from "./PasswordStrengthBar";
+import { PasswordStrengthBar } from "../../../../components/common/PasswordStrengthBar";
 import { SocialAuthButtons } from "../shared/SocialAuthButtons";
 import { BrandMark } from "@/components/common/BrandMark";
 
@@ -270,7 +270,7 @@ export function RegisterForm() {
         <p className="text-center text-[13px] text-slate-500 mt-5">
           Already have an account?{" "}
           <Link
-            to="/login"
+            to="/auth/login"
             className="text-indigo-600 font-medium underline underline-offset-2"
           >
             Log in
