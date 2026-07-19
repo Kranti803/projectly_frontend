@@ -1,4 +1,4 @@
-import type { ActivityIconType } from "@/features/auth/components/SocialIcons";
+import type { ActivityIconType } from "@/features/auth/components/shared/SocialIcons";
 interface ActivityItem {
   icon: ActivityIconType;
   text: string;

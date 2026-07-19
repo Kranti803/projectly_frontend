@@ -5,9 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
-import { SocialAuthButtons } from "./SocialAuthButtons";
+import { SocialAuthButtons } from "../shared/SocialAuthButtons";
+import { Link } from "@tanstack/react-router";
 
-export function LoginForm({
+const LoginForm = ({
   onSubmit,
 }: {
   onSubmit?: (data: {
@@ -15,7 +16,7 @@ export function LoginForm({
     password: string;
     remember: boolean;
   }) => void;
-}) {
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -67,12 +68,13 @@ export function LoginForm({
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center justify-between">
             <Label htmlFor="password">Password</Label>
-            <button
+            <Link
+              to="/forgot-password"
               type="button"
               className="text-[12px] text-indigo-600 hover:underline underline-offset-2"
             >
               Forgot password?
-            </button>
+            </Link>
           </div>
           <div className="relative">
             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
@@ -123,9 +125,12 @@ export function LoginForm({
 
       <p className="text-center text-[13px] text-slate-500 mt-5">
         Don't have an account?{" "}
-        <span className="text-indigo-600 font-medium underline underline-offset-2 cursor-pointer">
+        <Link
+          to="/register"
+          className="text-indigo-600 font-medium underline underline-offset-2 cursor-pointer"
+        >
           Sign up free
-        </span>
+        </Link>
       </p>
 
       <p className="text-center text-[11px] text-slate-300 mt-8">
@@ -133,4 +138,5 @@ export function LoginForm({
       </p>
     </div>
   );
-}
+};
+export default LoginForm;

@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
-import { AvatarStack } from "./AvatarStack";
-import { ActivityIcon } from "@/features/auth/components/SocialIcons";
+import { AvatarStack } from "../shared/AvatarStack";
+import { ActivityIcon } from "@/features/auth/components/shared/SocialIcons";
 import { PROJECT_PROGRESS, RECENT_ACTIVITY } from "@/constants/ProgressData";
 
 export function ProgressPreviewCard() {

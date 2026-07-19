@@ -1,4 +1,5 @@
 import { AVATAR_COLORS } from "@/constants/ProgressData";
+
 export function AvatarStack({ count = 4, size = "w-7 h-7" }) {
   return (
     <div className="flex">

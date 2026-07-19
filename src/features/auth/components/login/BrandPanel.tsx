@@ -1,7 +1,6 @@
-
-import { BrandMark } from "@/features/auth/components/SocialIcons";
-import { ProgressPreviewCard } from "@/features/auth/components/ProgressPreviewCard";
-import { AvatarStack } from "@/features/auth/components/AvatarStack";
+import { BrandMark } from "@/features/auth/components/shared/SocialIcons";
+import { ProgressPreviewCard } from "@/features/auth/components/login/ProgressPreviewCard";
+import { AvatarStack } from "@/features/auth/components/shared/AvatarStack";
 import { BRAND_COPY, SOCIAL_PROOF_TEXT } from "@/constants/ProgressData";
 
 export function BrandPanel() {
@@ -20,7 +19,9 @@ export function BrandPanel() {
           <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
             <BrandMark className="w-4 h-4 text-white" />
           </div>
-          <span className="font-semibold text-slate-800 text-[15px]">Projectly</span>
+          <span className="font-semibold text-slate-800 text-[15px]">
+            Projectly
+          </span>
         </div>
 
         <h1 className="text-4xl font-bold text-slate-900 leading-tight mb-4 tracking-tight">
@@ -31,14 +32,18 @@ export function BrandPanel() {
             </span>
           ))}
         </h1>
-        <p className="text-slate-500 text-[15px] mb-8 max-w-sm">{BRAND_COPY.subheading}</p>
+        <p className="text-slate-500 text-[15px] mb-8 max-w-sm">
+          {BRAND_COPY.subheading}
+        </p>
 
         <ProgressPreviewCard />
 
         <div className="flex items-center gap-3 mt-6">
           <AvatarStack count={4} />
           <span className="text-[13px] text-slate-500">
-            <span className="font-medium text-slate-700">{SOCIAL_PROOF_TEXT.count}</span>{" "}
+            <span className="font-medium text-slate-700">
+              {SOCIAL_PROOF_TEXT.count}
+            </span>{" "}
             {SOCIAL_PROOF_TEXT.suffix}
           </span>
         </div>

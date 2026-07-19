@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { GoogleIcon, GitHubIcon } from "@/features/auth/components/SocialIcons";
+import { GoogleIcon, GitHubIcon } from "@/features/auth/components/shared/SocialIcons";
 
 export function SocialAuthButtons({
   onGoogleClick,

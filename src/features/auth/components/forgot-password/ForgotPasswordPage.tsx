@@ -1,6 +1,7 @@
-import { BrandMark } from "@/features/auth/components/SocialIcons";
-import { ForgotPasswordCard } from "@/features/auth/components/forgot-password/ForgotPasswordCard";
-export default function ForgotPasswordPage() {
+import { BrandMark } from "@/features/auth/components/shared/SocialIcons";
+import ForgotPasswordCard from "@/features/auth/components/forgot-password/ForgotPasswordCard";
+
+const ForgotPasswordPage = () => {
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center justify-center bg-indigo-50/40 px-6 py-16 overflow-hidden">
       <div
@@ -26,9 +27,6 @@ export default function ForgotPasswordPage() {
           onSubmit={(email) => {
             console.log("send reset link to", email);
           }}
-          onBackToLogin={() => {
-            console.log("navigate back to /login");
-          }}
         />
       </div>
 
@@ -39,4 +37,6 @@ export default function ForgotPasswordPage() {
       </p>
     </div>
   );
-}
+};
+
+export default ForgotPasswordPage;

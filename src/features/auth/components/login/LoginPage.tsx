@@ -1,6 +1,6 @@
-import { BrandMark } from "@/features/auth/components/SocialIcons";
-import { BrandPanel } from "@/features/auth/components/BrandPanel";
-import { LoginForm } from "@/features/auth/components/LoginForm";
+import { BrandMark } from "@/features/auth/components/shared/SocialIcons";
+import { BrandPanel } from "@/features/auth/components/login/BrandPanel";
+import  LoginForm  from "@/features/auth/components/login/LoginForm";
 
 export default function LoginPage() {
   return (
