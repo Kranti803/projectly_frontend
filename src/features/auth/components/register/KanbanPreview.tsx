@@ -1,7 +1,7 @@
 import { kanbanColumns } from "@/constants/RegisterData";
-import { AvatarStack } from "../shared/AvatarStack";
-import { KanbanColumn } from "./KanbanColumn";
-import { BrandMark } from "../shared/SocialIcons";
+import { AvatarStack } from "@/components/common/AvatarStack";
+import { KanbanColumn } from "@/components/common/KanbanColumn";
+import { BrandMark } from "@/components/common/BrandMark";
 
 export function KanbanPreview() {
   return (

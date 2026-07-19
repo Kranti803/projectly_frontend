@@ -1,6 +1,6 @@
-import { BrandMark } from "@/features/auth/components/shared/SocialIcons";
+import { BrandMark } from "@/components/common/BrandMark";
 import { ProgressPreviewCard } from "@/features/auth/components/login/ProgressPreviewCard";
-import { AvatarStack } from "@/features/auth/components/shared/AvatarStack";
+import { AvatarStack } from "@/components/common/AvatarStack";
 import { BRAND_COPY, SOCIAL_PROOF_TEXT } from "@/constants/ProgressData";
 
 export function BrandPanel() {

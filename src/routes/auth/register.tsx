@@ -1,7 +1,7 @@
 import { KanbanPreview, RegisterForm } from "@/features/auth/components";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/register")({
+export const Route = createFileRoute("/auth/register")({
   component: RegisterPage,
 });
 

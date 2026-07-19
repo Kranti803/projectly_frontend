@@ -8,5 +8,4 @@ export { default as LoginPage } from "./login/LoginPage";
 export { default as ForgotPasswordCard } from "./forgot-password/ForgotPasswordCard";
 export { default as ForgotPasswordPage } from "./forgot-password/ForgotPasswordPage";
 
-export { AvatarStack } from "./shared/AvatarStack";
 export { SocialAuthButtons } from "./shared/SocialAuthButtons";

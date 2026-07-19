@@ -69,7 +69,7 @@ const LoginForm = ({
           <div className="flex items-center justify-between">
             <Label htmlFor="password">Password</Label>
             <Link
-              to="/forgot-password"
+              to="/auth/forgot-password"
               type="button"
               className="text-[12px] text-indigo-600 hover:underline underline-offset-2"
             >
@@ -126,7 +126,7 @@ const LoginForm = ({
       <p className="text-center text-[13px] text-slate-500 mt-5">
         Don't have an account?{" "}
         <Link
-          to="/register"
+          to="/auth/register"
           className="text-indigo-600 font-medium underline underline-offset-2 cursor-pointer"
         >
           Sign up free

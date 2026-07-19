@@ -1,14 +1,3 @@
-import { AVATAR_COLORS } from "@/constants/ProgressData";
-
-export function AvatarStack({ count = 4, size = "w-7 h-7" }) {
-  return (
-    <div className="flex">
-      {Array.from({ length: count }).map((_, i) => (
-        <div
-          key={i}
-          className={`${size} rounded-full ${AVATAR_COLORS[i % AVATAR_COLORS.length]} border-2 border-white -ml-2 first:ml-0`}
-        />
-      ))}
-    </div>
-  );
-}
+// Re-exported from @/components/common/AvatarStack for backwards compatibility.
+// Import directly from @/components/common/AvatarStack going forward.
+export { AvatarStack } from "@/components/common/AvatarStack";

@@ -1,4 +1,4 @@
-import { BrandMark } from "@/features/auth/components/shared/SocialIcons";
+import { BrandMark } from "@/components/common/BrandMark";
 import { BrandPanel } from "@/features/auth/components/login/BrandPanel";
 import  LoginForm  from "@/features/auth/components/login/LoginForm";
 

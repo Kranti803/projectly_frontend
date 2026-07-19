@@ -1,5 +1,3 @@
-export type ActivityIconType = "merge" | "check" | "comment";
-
 export function GoogleIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24">
@@ -29,43 +27,4 @@ export function GitHubIcon() {
       <path d="M12 .3a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.08 1.84 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.67-.31-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 .3z" />
     </svg>
   );
-}
-
-export function BrandMark({ className = "w-4 h-4" }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2.5">
-      <rect x="3" y="3" width="7" height="7" rx="1.5" />
-      <rect x="14" y="3" width="7" height="7" rx="1.5" />
-      <rect x="3" y="14" width="7" height="7" rx="1.5" />
-    </svg>
-  );
-}
-
-const ACTIVITY_ICONS = {
-  merge: (
-    <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2">
-      <circle cx="6" cy="6" r="2.5" />
-      <circle cx="6" cy="18" r="2.5" />
-      <circle cx="18" cy="12" r="2.5" />
-      <path strokeLinecap="round" d="M6 8.5V15.5M8.2 12H15.5" />
-    </svg>
-  ),
-  check: (
-    <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-    </svg>
-  ),
-  comment: (
-    <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"
-      />
-    </svg>
-  ),
-};
-
-export function ActivityIcon({ type, className = "" }: { type:ActivityIconType; className?: string }) {
-  return <span className={className}>{ACTIVITY_ICONS[type] ?? ACTIVITY_ICONS.check}</span>;
 }

@@ -1,4 +1,4 @@
-import { BrandMark } from "@/features/auth/components/shared/SocialIcons";
+import { BrandMark } from "@/components/common/BrandMark";
 import ForgotPasswordCard from "@/features/auth/components/forgot-password/ForgotPasswordCard";
 
 const ForgotPasswordPage = () => {

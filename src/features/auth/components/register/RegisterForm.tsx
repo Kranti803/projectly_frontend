@@ -16,7 +16,7 @@ import {
 } from "@/features/auth/schemas/register.schema";
 import { PasswordStrengthBar } from "./PasswordStrengthBar";
 import { SocialAuthButtons } from "../shared/SocialAuthButtons";
-import { BrandMark } from "../shared/SocialIcons";
+import { BrandMark } from "@/components/common/BrandMark";
 
 export function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);

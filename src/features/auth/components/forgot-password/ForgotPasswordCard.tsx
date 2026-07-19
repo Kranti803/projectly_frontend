@@ -61,7 +61,7 @@ const ForgotPasswordCard = ({ onSubmit }: ForgotPasswordCardProps) => {
       <Separator className="my-6" />
 
       <Link
-        to="/login"
+        to="/auth/login"
         type="button"
         className="w-full flex items-center justify-center gap-1.5 text-[13px] font-medium text-slate-600 hover:text-slate-900 transition"
       >
