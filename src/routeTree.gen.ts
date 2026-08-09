@@ -17,6 +17,7 @@ import { Route as AuthRegisterRouteImport } from './routes/auth/register'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
 import { Route as AuthForgotPasswordRouteImport } from './routes/auth/forgot-password'
 import { Route as AuthEmailVerificationRouteImport } from './routes/auth/email-verification'
+import { Route as OrganizationSelectOrganizationIndexRouteImport } from './routes/organization/select-organization/index'
 import { Route as AppTeamIndexRouteImport } from './routes/_app/team/index'
 import { Route as AppTasksIndexRouteImport } from './routes/_app/tasks/index'
 import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
@@ -64,6 +65,12 @@ const AuthEmailVerificationRoute = AuthEmailVerificationRouteImport.update({
   path: '/auth/email-verification',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrganizationSelectOrganizationIndexRoute =
+  OrganizationSelectOrganizationIndexRouteImport.update({
+    id: '/organization/select-organization/',
+    path: '/organization/select-organization/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AppTeamIndexRoute = AppTeamIndexRouteImport.update({
   id: '/team/',
   path: '/team/',
@@ -115,6 +122,7 @@ export interface FileRoutesByFullPath {
   '/settings/': typeof AppSettingsIndexRoute
   '/tasks/': typeof AppTasksIndexRoute
   '/team/': typeof AppTeamIndexRoute
+  '/organization/select-organization/': typeof OrganizationSelectOrganizationIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -131,6 +139,7 @@ export interface FileRoutesByTo {
   '/settings': typeof AppSettingsIndexRoute
   '/tasks': typeof AppTasksIndexRoute
   '/team': typeof AppTeamIndexRoute
+  '/organization/select-organization': typeof OrganizationSelectOrganizationIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -149,6 +158,7 @@ export interface FileRoutesById {
   '/_app/settings/': typeof AppSettingsIndexRoute
   '/_app/tasks/': typeof AppTasksIndexRoute
   '/_app/team/': typeof AppTeamIndexRoute
+  '/organization/select-organization/': typeof OrganizationSelectOrganizationIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -167,6 +177,7 @@ export interface FileRouteTypes {
     | '/settings/'
     | '/tasks/'
     | '/team/'
+    | '/organization/select-organization/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -183,6 +194,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/tasks'
     | '/team'
+    | '/organization/select-organization'
   id:
     | '__root__'
     | '/'
@@ -200,6 +212,7 @@ export interface FileRouteTypes {
     | '/_app/settings/'
     | '/_app/tasks/'
     | '/_app/team/'
+    | '/organization/select-organization/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -211,6 +224,7 @@ export interface RootRouteChildren {
   AuthRegisterRoute: typeof AuthRegisterRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   OrganizationIndexRoute: typeof OrganizationIndexRoute
+  OrganizationSelectOrganizationIndexRoute: typeof OrganizationSelectOrganizationIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -269,6 +283,13 @@ declare module '@tanstack/react-router' {
       path: '/auth/email-verification'
       fullPath: '/auth/email-verification'
       preLoaderRoute: typeof AuthEmailVerificationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organization/select-organization/': {
+      id: '/organization/select-organization/'
+      path: '/organization/select-organization'
+      fullPath: '/organization/select-organization/'
+      preLoaderRoute: typeof OrganizationSelectOrganizationIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_app/team/': {
@@ -354,6 +375,8 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRegisterRoute: AuthRegisterRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   OrganizationIndexRoute: OrganizationIndexRoute,
+  OrganizationSelectOrganizationIndexRoute:
+    OrganizationSelectOrganizationIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
