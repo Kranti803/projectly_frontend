@@ -1,5 +1,6 @@
 import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { Toaster } from "sonner";
 import type { QueryClient } from "@tanstack/react-query";
 
 interface RouterContext {
@@ -9,7 +10,8 @@ interface RouterContext {
 const RootLayout = () => (
   <>
     <Outlet />
-    {/* <TanStackRouterDevtools  /> */}
+    <Toaster />
+    <TanStackRouterDevtools  />
   </>
 );
 
