@@ -9,7 +9,7 @@ interface RouterContext {
 const RootLayout = () => (
   <>
     <Outlet />
-    <TanStackRouterDevtools />
+    {/* <TanStackRouterDevtools  /> */}
   </>
 );
 
