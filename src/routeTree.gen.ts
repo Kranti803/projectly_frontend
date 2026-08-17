@@ -18,6 +18,7 @@ import { Route as AuthLoginRouteImport } from './routes/auth/login'
 import { Route as AuthForgotPasswordRouteImport } from './routes/auth/forgot-password'
 import { Route as AuthEmailVerificationRouteImport } from './routes/auth/email-verification'
 import { Route as OrganizationSelectOrganizationIndexRouteImport } from './routes/organization/select-organization/index'
+import { Route as OrganizationCreateIndexRouteImport } from './routes/organization/create/index'
 import { Route as AppTeamIndexRouteImport } from './routes/_app/team/index'
 import { Route as AppTasksIndexRouteImport } from './routes/_app/tasks/index'
 import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
@@ -71,6 +72,11 @@ const OrganizationSelectOrganizationIndexRoute =
     path: '/organization/select-organization/',
     getParentRoute: () => rootRouteImport,
   } as any)
+const OrganizationCreateIndexRoute = OrganizationCreateIndexRouteImport.update({
+  id: '/organization/create/',
+  path: '/organization/create/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppTeamIndexRoute = AppTeamIndexRouteImport.update({
   id: '/team/',
   path: '/team/',
@@ -122,6 +128,7 @@ export interface FileRoutesByFullPath {
   '/settings/': typeof AppSettingsIndexRoute
   '/tasks/': typeof AppTasksIndexRoute
   '/team/': typeof AppTeamIndexRoute
+  '/organization/create/': typeof OrganizationCreateIndexRoute
   '/organization/select-organization/': typeof OrganizationSelectOrganizationIndexRoute
 }
 export interface FileRoutesByTo {
@@ -139,6 +146,7 @@ export interface FileRoutesByTo {
   '/settings': typeof AppSettingsIndexRoute
   '/tasks': typeof AppTasksIndexRoute
   '/team': typeof AppTeamIndexRoute
+  '/organization/create': typeof OrganizationCreateIndexRoute
   '/organization/select-organization': typeof OrganizationSelectOrganizationIndexRoute
 }
 export interface FileRoutesById {
@@ -158,6 +166,7 @@ export interface FileRoutesById {
   '/_app/settings/': typeof AppSettingsIndexRoute
   '/_app/tasks/': typeof AppTasksIndexRoute
   '/_app/team/': typeof AppTeamIndexRoute
+  '/organization/create/': typeof OrganizationCreateIndexRoute
   '/organization/select-organization/': typeof OrganizationSelectOrganizationIndexRoute
 }
 export interface FileRouteTypes {
@@ -177,6 +186,7 @@ export interface FileRouteTypes {
     | '/settings/'
     | '/tasks/'
     | '/team/'
+    | '/organization/create/'
     | '/organization/select-organization/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -194,6 +204,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/tasks'
     | '/team'
+    | '/organization/create'
     | '/organization/select-organization'
   id:
     | '__root__'
@@ -212,6 +223,7 @@ export interface FileRouteTypes {
     | '/_app/settings/'
     | '/_app/tasks/'
     | '/_app/team/'
+    | '/organization/create/'
     | '/organization/select-organization/'
   fileRoutesById: FileRoutesById
 }
@@ -224,6 +236,7 @@ export interface RootRouteChildren {
   AuthRegisterRoute: typeof AuthRegisterRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   OrganizationIndexRoute: typeof OrganizationIndexRoute
+  OrganizationCreateIndexRoute: typeof OrganizationCreateIndexRoute
   OrganizationSelectOrganizationIndexRoute: typeof OrganizationSelectOrganizationIndexRoute
 }
 
@@ -290,6 +303,13 @@ declare module '@tanstack/react-router' {
       path: '/organization/select-organization'
       fullPath: '/organization/select-organization/'
       preLoaderRoute: typeof OrganizationSelectOrganizationIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organization/create/': {
+      id: '/organization/create/'
+      path: '/organization/create'
+      fullPath: '/organization/create/'
+      preLoaderRoute: typeof OrganizationCreateIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_app/team/': {
@@ -375,6 +395,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRegisterRoute: AuthRegisterRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   OrganizationIndexRoute: OrganizationIndexRoute,
+  OrganizationCreateIndexRoute: OrganizationCreateIndexRoute,
   OrganizationSelectOrganizationIndexRoute:
     OrganizationSelectOrganizationIndexRoute,
 }
