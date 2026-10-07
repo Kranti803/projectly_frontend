@@ -23,6 +23,7 @@ import {
   CheckSquare,
   Calendar,
   Users,
+  UserRound,
   BarChart3,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
@@ -56,6 +57,11 @@ const menuItems = [
     title: "Team",
     icon: Users,
     href: "/team",
+  },
+  {
+    title: "Members",
+    icon: UserRound,
+    href: "/members",
   },
   {
     title: "Reports",

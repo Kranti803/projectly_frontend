@@ -1,9 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
+import TasksPage from "@/features/tasks/components/TaskPage";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/_app/tasks/')({
+export const Route = createFileRoute("/_app/tasks/")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  return <div>Hello "/_app/tasks/"!</div>
+  return <TasksPage />;
 }

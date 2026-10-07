@@ -24,8 +24,10 @@ import { Route as AppTasksIndexRouteImport } from './routes/_app/tasks/index'
 import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
 import { Route as AppReportsIndexRouteImport } from './routes/_app/reports/index'
 import { Route as AppProjectsIndexRouteImport } from './routes/_app/projects/index'
+import { Route as AppMembersIndexRouteImport } from './routes/_app/members/index'
 import { Route as AppDashboardIndexRouteImport } from './routes/_app/dashboard/index'
 import { Route as AppCalendarIndexRouteImport } from './routes/_app/calendar/index'
+import { Route as AppProjectsProjectIdRouteImport } from './routes/_app/projects/$projectId'
 
 const AppRoute = AppRouteImport.update({
   id: '/_app',
@@ -102,6 +104,11 @@ const AppProjectsIndexRoute = AppProjectsIndexRouteImport.update({
   path: '/projects/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppMembersIndexRoute = AppMembersIndexRouteImport.update({
+  id: '/members/',
+  path: '/members/',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDashboardIndexRoute = AppDashboardIndexRouteImport.update({
   id: '/dashboard/',
   path: '/dashboard/',
@@ -110,6 +117,11 @@ const AppDashboardIndexRoute = AppDashboardIndexRouteImport.update({
 const AppCalendarIndexRoute = AppCalendarIndexRouteImport.update({
   id: '/calendar/',
   path: '/calendar/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProjectsProjectIdRoute = AppProjectsProjectIdRouteImport.update({
+  id: '/projects/$projectId',
+  path: '/projects/$projectId',
   getParentRoute: () => AppRoute,
 } as any)
 
@@ -121,8 +133,10 @@ export interface FileRoutesByFullPath {
   '/auth/register': typeof AuthRegisterRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/organization/': typeof OrganizationIndexRoute
+  '/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/calendar/': typeof AppCalendarIndexRoute
   '/dashboard/': typeof AppDashboardIndexRoute
+  '/members/': typeof AppMembersIndexRoute
   '/projects/': typeof AppProjectsIndexRoute
   '/reports/': typeof AppReportsIndexRoute
   '/settings/': typeof AppSettingsIndexRoute
@@ -139,8 +153,10 @@ export interface FileRoutesByTo {
   '/auth/register': typeof AuthRegisterRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/organization': typeof OrganizationIndexRoute
+  '/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/calendar': typeof AppCalendarIndexRoute
   '/dashboard': typeof AppDashboardIndexRoute
+  '/members': typeof AppMembersIndexRoute
   '/projects': typeof AppProjectsIndexRoute
   '/reports': typeof AppReportsIndexRoute
   '/settings': typeof AppSettingsIndexRoute
@@ -159,8 +175,10 @@ export interface FileRoutesById {
   '/auth/register': typeof AuthRegisterRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/organization/': typeof OrganizationIndexRoute
+  '/_app/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/_app/calendar/': typeof AppCalendarIndexRoute
   '/_app/dashboard/': typeof AppDashboardIndexRoute
+  '/_app/members/': typeof AppMembersIndexRoute
   '/_app/projects/': typeof AppProjectsIndexRoute
   '/_app/reports/': typeof AppReportsIndexRoute
   '/_app/settings/': typeof AppSettingsIndexRoute
@@ -179,8 +197,10 @@ export interface FileRouteTypes {
     | '/auth/register'
     | '/auth/reset-password'
     | '/organization/'
+    | '/projects/$projectId'
     | '/calendar/'
     | '/dashboard/'
+    | '/members/'
     | '/projects/'
     | '/reports/'
     | '/settings/'
@@ -197,8 +217,10 @@ export interface FileRouteTypes {
     | '/auth/register'
     | '/auth/reset-password'
     | '/organization'
+    | '/projects/$projectId'
     | '/calendar'
     | '/dashboard'
+    | '/members'
     | '/projects'
     | '/reports'
     | '/settings'
@@ -216,8 +238,10 @@ export interface FileRouteTypes {
     | '/auth/register'
     | '/auth/reset-password'
     | '/organization/'
+    | '/_app/projects/$projectId'
     | '/_app/calendar/'
     | '/_app/dashboard/'
+    | '/_app/members/'
     | '/_app/projects/'
     | '/_app/reports/'
     | '/_app/settings/'
@@ -347,6 +371,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProjectsIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/members/': {
+      id: '/_app/members/'
+      path: '/members'
+      fullPath: '/members/'
+      preLoaderRoute: typeof AppMembersIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/dashboard/': {
       id: '/_app/dashboard/'
       path: '/dashboard'
@@ -361,12 +392,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppCalendarIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/projects/$projectId': {
+      id: '/_app/projects/$projectId'
+      path: '/projects/$projectId'
+      fullPath: '/projects/$projectId'
+      preLoaderRoute: typeof AppProjectsProjectIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppProjectsProjectIdRoute: typeof AppProjectsProjectIdRoute
   AppCalendarIndexRoute: typeof AppCalendarIndexRoute
   AppDashboardIndexRoute: typeof AppDashboardIndexRoute
+  AppMembersIndexRoute: typeof AppMembersIndexRoute
   AppProjectsIndexRoute: typeof AppProjectsIndexRoute
   AppReportsIndexRoute: typeof AppReportsIndexRoute
   AppSettingsIndexRoute: typeof AppSettingsIndexRoute
@@ -375,8 +415,10 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppProjectsProjectIdRoute: AppProjectsProjectIdRoute,
   AppCalendarIndexRoute: AppCalendarIndexRoute,
   AppDashboardIndexRoute: AppDashboardIndexRoute,
+  AppMembersIndexRoute: AppMembersIndexRoute,
   AppProjectsIndexRoute: AppProjectsIndexRoute,
   AppReportsIndexRoute: AppReportsIndexRoute,
   AppSettingsIndexRoute: AppSettingsIndexRoute,
