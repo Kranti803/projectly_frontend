@@ -19,7 +19,7 @@ import { Route as AuthForgotPasswordRouteImport } from './routes/auth/forgot-pas
 import { Route as AuthEmailVerificationRouteImport } from './routes/auth/email-verification'
 import { Route as OrganizationSelectOrganizationIndexRouteImport } from './routes/organization/select-organization/index'
 import { Route as OrganizationCreateIndexRouteImport } from './routes/organization/create/index'
-import { Route as AppTeamIndexRouteImport } from './routes/_app/team/index'
+import { Route as AppTeamsIndexRouteImport } from './routes/_app/teams/index'
 import { Route as AppTasksIndexRouteImport } from './routes/_app/tasks/index'
 import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
 import { Route as AppReportsIndexRouteImport } from './routes/_app/reports/index'
@@ -27,6 +27,7 @@ import { Route as AppProjectsIndexRouteImport } from './routes/_app/projects/ind
 import { Route as AppMembersIndexRouteImport } from './routes/_app/members/index'
 import { Route as AppDashboardIndexRouteImport } from './routes/_app/dashboard/index'
 import { Route as AppCalendarIndexRouteImport } from './routes/_app/calendar/index'
+import { Route as AppTeamsTeamIdRouteImport } from './routes/_app/teams/$teamId'
 import { Route as AppProjectsProjectIdRouteImport } from './routes/_app/projects/$projectId'
 
 const AppRoute = AppRouteImport.update({
@@ -79,9 +80,9 @@ const OrganizationCreateIndexRoute = OrganizationCreateIndexRouteImport.update({
   path: '/organization/create/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppTeamIndexRoute = AppTeamIndexRouteImport.update({
-  id: '/team/',
-  path: '/team/',
+const AppTeamsIndexRoute = AppTeamsIndexRouteImport.update({
+  id: '/teams/',
+  path: '/teams/',
   getParentRoute: () => AppRoute,
 } as any)
 const AppTasksIndexRoute = AppTasksIndexRouteImport.update({
@@ -119,6 +120,11 @@ const AppCalendarIndexRoute = AppCalendarIndexRouteImport.update({
   path: '/calendar/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppTeamsTeamIdRoute = AppTeamsTeamIdRouteImport.update({
+  id: '/teams/$teamId',
+  path: '/teams/$teamId',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppProjectsProjectIdRoute = AppProjectsProjectIdRouteImport.update({
   id: '/projects/$projectId',
   path: '/projects/$projectId',
@@ -134,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/organization/': typeof OrganizationIndexRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
+  '/teams/$teamId': typeof AppTeamsTeamIdRoute
   '/calendar/': typeof AppCalendarIndexRoute
   '/dashboard/': typeof AppDashboardIndexRoute
   '/members/': typeof AppMembersIndexRoute
@@ -141,7 +148,7 @@ export interface FileRoutesByFullPath {
   '/reports/': typeof AppReportsIndexRoute
   '/settings/': typeof AppSettingsIndexRoute
   '/tasks/': typeof AppTasksIndexRoute
-  '/team/': typeof AppTeamIndexRoute
+  '/teams/': typeof AppTeamsIndexRoute
   '/organization/create/': typeof OrganizationCreateIndexRoute
   '/organization/select-organization/': typeof OrganizationSelectOrganizationIndexRoute
 }
@@ -154,6 +161,7 @@ export interface FileRoutesByTo {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/organization': typeof OrganizationIndexRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
+  '/teams/$teamId': typeof AppTeamsTeamIdRoute
   '/calendar': typeof AppCalendarIndexRoute
   '/dashboard': typeof AppDashboardIndexRoute
   '/members': typeof AppMembersIndexRoute
@@ -161,7 +169,7 @@ export interface FileRoutesByTo {
   '/reports': typeof AppReportsIndexRoute
   '/settings': typeof AppSettingsIndexRoute
   '/tasks': typeof AppTasksIndexRoute
-  '/team': typeof AppTeamIndexRoute
+  '/teams': typeof AppTeamsIndexRoute
   '/organization/create': typeof OrganizationCreateIndexRoute
   '/organization/select-organization': typeof OrganizationSelectOrganizationIndexRoute
 }
@@ -176,6 +184,7 @@ export interface FileRoutesById {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/organization/': typeof OrganizationIndexRoute
   '/_app/projects/$projectId': typeof AppProjectsProjectIdRoute
+  '/_app/teams/$teamId': typeof AppTeamsTeamIdRoute
   '/_app/calendar/': typeof AppCalendarIndexRoute
   '/_app/dashboard/': typeof AppDashboardIndexRoute
   '/_app/members/': typeof AppMembersIndexRoute
@@ -183,7 +192,7 @@ export interface FileRoutesById {
   '/_app/reports/': typeof AppReportsIndexRoute
   '/_app/settings/': typeof AppSettingsIndexRoute
   '/_app/tasks/': typeof AppTasksIndexRoute
-  '/_app/team/': typeof AppTeamIndexRoute
+  '/_app/teams/': typeof AppTeamsIndexRoute
   '/organization/create/': typeof OrganizationCreateIndexRoute
   '/organization/select-organization/': typeof OrganizationSelectOrganizationIndexRoute
 }
@@ -198,6 +207,7 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/organization/'
     | '/projects/$projectId'
+    | '/teams/$teamId'
     | '/calendar/'
     | '/dashboard/'
     | '/members/'
@@ -205,7 +215,7 @@ export interface FileRouteTypes {
     | '/reports/'
     | '/settings/'
     | '/tasks/'
-    | '/team/'
+    | '/teams/'
     | '/organization/create/'
     | '/organization/select-organization/'
   fileRoutesByTo: FileRoutesByTo
@@ -218,6 +228,7 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/organization'
     | '/projects/$projectId'
+    | '/teams/$teamId'
     | '/calendar'
     | '/dashboard'
     | '/members'
@@ -225,7 +236,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/settings'
     | '/tasks'
-    | '/team'
+    | '/teams'
     | '/organization/create'
     | '/organization/select-organization'
   id:
@@ -239,6 +250,7 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/organization/'
     | '/_app/projects/$projectId'
+    | '/_app/teams/$teamId'
     | '/_app/calendar/'
     | '/_app/dashboard/'
     | '/_app/members/'
@@ -246,7 +258,7 @@ export interface FileRouteTypes {
     | '/_app/reports/'
     | '/_app/settings/'
     | '/_app/tasks/'
-    | '/_app/team/'
+    | '/_app/teams/'
     | '/organization/create/'
     | '/organization/select-organization/'
   fileRoutesById: FileRoutesById
@@ -336,11 +348,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrganizationCreateIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_app/team/': {
-      id: '/_app/team/'
-      path: '/team'
-      fullPath: '/team/'
-      preLoaderRoute: typeof AppTeamIndexRouteImport
+    '/_app/teams/': {
+      id: '/_app/teams/'
+      path: '/teams'
+      fullPath: '/teams/'
+      preLoaderRoute: typeof AppTeamsIndexRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/tasks/': {
@@ -392,6 +404,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppCalendarIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/teams/$teamId': {
+      id: '/_app/teams/$teamId'
+      path: '/teams/$teamId'
+      fullPath: '/teams/$teamId'
+      preLoaderRoute: typeof AppTeamsTeamIdRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/projects/$projectId': {
       id: '/_app/projects/$projectId'
       path: '/projects/$projectId'
@@ -404,6 +423,7 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppProjectsProjectIdRoute: typeof AppProjectsProjectIdRoute
+  AppTeamsTeamIdRoute: typeof AppTeamsTeamIdRoute
   AppCalendarIndexRoute: typeof AppCalendarIndexRoute
   AppDashboardIndexRoute: typeof AppDashboardIndexRoute
   AppMembersIndexRoute: typeof AppMembersIndexRoute
@@ -411,11 +431,12 @@ interface AppRouteChildren {
   AppReportsIndexRoute: typeof AppReportsIndexRoute
   AppSettingsIndexRoute: typeof AppSettingsIndexRoute
   AppTasksIndexRoute: typeof AppTasksIndexRoute
-  AppTeamIndexRoute: typeof AppTeamIndexRoute
+  AppTeamsIndexRoute: typeof AppTeamsIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppProjectsProjectIdRoute: AppProjectsProjectIdRoute,
+  AppTeamsTeamIdRoute: AppTeamsTeamIdRoute,
   AppCalendarIndexRoute: AppCalendarIndexRoute,
   AppDashboardIndexRoute: AppDashboardIndexRoute,
   AppMembersIndexRoute: AppMembersIndexRoute,
@@ -423,7 +444,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppReportsIndexRoute: AppReportsIndexRoute,
   AppSettingsIndexRoute: AppSettingsIndexRoute,
   AppTasksIndexRoute: AppTasksIndexRoute,
-  AppTeamIndexRoute: AppTeamIndexRoute,
+  AppTeamsIndexRoute: AppTeamsIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)

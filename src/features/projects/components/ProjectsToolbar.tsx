@@ -13,13 +13,14 @@ import {
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import type { ProjectFilters, SortKey } from "../hooks/useProjectFilters"
 import type { ProjectStatus } from "@/constants/ProjectData"
+import type { Team } from "@/constants/TeamsData"
 
 export type ViewMode = "grid" | "list"
 
 interface ProjectsToolbarProps {
   filters: ProjectFilters
   onFilterChange: <K extends keyof ProjectFilters>(key: K, value: ProjectFilters[K]) => void
-  teams: string[]
+  teams: Team[]
   view: ViewMode
   onViewChange: (view: ViewMode) => void
 }
@@ -68,8 +69,8 @@ export function ProjectsToolbar({
         <SelectContent>
           <SelectItem value="all">All teams</SelectItem>
           {teams.map((team) => (
-            <SelectItem key={team} value={team}>
-              {team}
+            <SelectItem key={team.id} value={team.id}>
+              {team.name}
             </SelectItem>
           ))}
         </SelectContent>

@@ -54,9 +54,9 @@ const menuItems = [
     href: "/calendar",
   },
   {
-    title: "Team",
+    title: "Teams",
     icon: Users,
-    href: "/team",
+    href: "/teams",
   },
   {
     title: "Members",

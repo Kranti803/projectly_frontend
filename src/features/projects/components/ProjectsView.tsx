@@ -3,7 +3,8 @@
 import { useState } from "react"
 import { FolderKanban, Plus, SearchX } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { projectColors, teams, type Project } from "@/constants/ProjectData"
+import { projectColors, type Project } from "@/constants/ProjectData"
+import { teams } from "@/constants/TeamsData"
 import { ProjectsToolbar, type ViewMode } from "./ProjectsToolbar"
 import { useProjectFilters } from "../hooks/useProjectFilters"
 import { ProjectFormDialog, type ProjectFormValues } from "./ProjectFormDialog"
@@ -35,7 +36,7 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
       status: "active",
       progress: 0,
       dueDate: values.dueDate || new Date().toISOString().slice(0, 10),
-      team: values.team,
+      teamId: values.teamId,
       color: values.color,
       members: [],
     }

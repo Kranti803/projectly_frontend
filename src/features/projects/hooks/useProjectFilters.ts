@@ -7,7 +7,7 @@ export type SortKey = "name" | "dueDate" | "progress";
 export interface ProjectFilters {
   query: string;
   status: ProjectStatus | "all";
-  team: string; // "all" or a team name
+  team: string; // "all" or a team id
   sort: SortKey;
 }
 
@@ -43,7 +43,7 @@ export function useProjectFilters(projects: Project[], pageSize = 9) {
       .filter((p) =>
         filters.status === "all" ? true : p.status === filters.status,
       )
-      .filter((p) => (filters.team === "all" ? true : p.team === filters.team))
+      .filter((p) => (filters.team === "all" ? true : p.teamId === filters.team))
       .filter((p) =>
         q ? `${p.name} ${p.description}`.toLowerCase().includes(q) : true,
       )

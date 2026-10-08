@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -10,34 +10,36 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
-
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
+import { ColorPicker } from "@/components/common/ColorPicker"
+import type { Team } from "@/constants/TeamsData"
+// REPLACES the previous version. Changes: `team` is now `teamId`, `teams` is Team[],
+// and the color swatches use the shared ColorPicker.
 export interface ProjectFormValues {
-  name: string;
-  description: string;
-  team: string;
-  startDate: string;
-  dueDate: string;
-  color: string;
+  name: string
+  description: string
+  teamId: string
+  startDate: string
+  dueDate: string
+  color: string
 }
 
 interface ProjectFormDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  teams: string[];
-  colors: string[];
-  onSubmit: (values: ProjectFormValues) => void;
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  teams: Team[]
+  colors: string[]
+  onSubmit: (values: ProjectFormValues) => void
 }
 
 export function ProjectFormDialog({
@@ -52,9 +54,7 @@ export function ProjectFormDialog({
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle>Create project</DialogTitle>
-          <DialogDescription>
-            Set up a project and choose which team owns it.
-          </DialogDescription>
+          <DialogDescription>Set up a project and choose which team owns it.</DialogDescription>
         </DialogHeader>
         {/* DialogContent unmounts when closed, so the form resets on every open. */}
         <ProjectForm
@@ -62,67 +62,56 @@ export function ProjectFormDialog({
           colors={colors}
           onCancel={() => onOpenChange(false)}
           onSubmit={(values) => {
-            onSubmit(values);
-            onOpenChange(false);
+            onSubmit(values)
+            onOpenChange(false)
           }}
         />
       </DialogContent>
     </Dialog>
-  );
+  )
 }
 
-type FormErrors = Partial<Record<keyof ProjectFormValues, string>>;
+type FormErrors = Partial<Record<keyof ProjectFormValues, string>>
 
 interface ProjectFormProps {
-  teams: string[];
-  colors: string[];
-  onCancel: () => void;
-  onSubmit: (values: ProjectFormValues) => void;
+  teams: Team[]
+  colors: string[]
+  onCancel: () => void
+  onSubmit: (values: ProjectFormValues) => void
 }
 
 function ProjectForm({ teams, colors, onCancel, onSubmit }: ProjectFormProps) {
   const [values, setValues] = useState<ProjectFormValues>({
     name: "",
     description: "",
-    team: "",
+    teamId: "",
     startDate: "",
     dueDate: "",
     color: colors[0],
-  });
-  const [errors, setErrors] = useState<FormErrors>({});
+  })
+  const [errors, setErrors] = useState<FormErrors>({})
 
-  function update<K extends keyof ProjectFormValues>(
-    key: K,
-    value: ProjectFormValues[K],
-  ) {
-    setValues((prev) => ({ ...prev, [key]: value }));
-    setErrors((prev) => ({ ...prev, [key]: undefined }));
+  function update<K extends keyof ProjectFormValues>(key: K, value: ProjectFormValues[K]) {
+    setValues((prev) => ({ ...prev, [key]: value }))
+    setErrors((prev) => ({ ...prev, [key]: undefined }))
   }
 
   function validate(): FormErrors {
-    const next: FormErrors = {};
-    if (!values.name.trim()) next.name = "Project name is required.";
-    if (!values.team) next.team = "Choose a team.";
-    if (
-      values.startDate &&
-      values.dueDate &&
-      values.dueDate < values.startDate
-    ) {
-      next.dueDate = "Due date can't be before the start date.";
+    const next: FormErrors = {}
+    if (!values.name.trim()) next.name = "Project name is required."
+    if (!values.teamId) next.teamId = "Choose a team."
+    if (values.startDate && values.dueDate && values.dueDate < values.startDate) {
+      next.dueDate = "Due date can't be before the start date."
     }
-    return next;
+    return next
   }
 
   function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    const next = validate();
-    setErrors(next);
-    if (Object.keys(next).length > 0) return;
-    onSubmit({
-      ...values,
-      name: values.name.trim(),
-      description: values.description.trim(),
-    });
+    e.preventDefault()
+    const next = validate()
+    setErrors(next)
+    if (Object.keys(next).length > 0) return
+    onSubmit({ ...values, name: values.name.trim(), description: values.description.trim() })
   }
 
   return (
@@ -136,9 +125,7 @@ function ProjectForm({ teams, colors, onCancel, onSubmit }: ProjectFormProps) {
           placeholder="e.g. Website relaunch"
           aria-invalid={!!errors.name}
         />
-        {errors.name && (
-          <p className="text-xs text-destructive">{errors.name}</p>
-        )}
+        {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
       </div>
 
       <div className="space-y-2">
@@ -155,23 +142,23 @@ function ProjectForm({ teams, colors, onCancel, onSubmit }: ProjectFormProps) {
       <div className="space-y-2">
         <Label htmlFor="project-team">Team</Label>
         <Select
-          value={values.team}
-          onValueChange={(v) => v !== null && update("team", v)}
+          value={values.teamId}
+          onValueChange={(v) => {
+            if (v !== null) update("teamId", v)
+          }}
         >
-          <SelectTrigger id="project-team" aria-invalid={!!errors.team}>
+          <SelectTrigger id="project-team" aria-invalid={!!errors.teamId}>
             <SelectValue placeholder="Select a team" />
           </SelectTrigger>
           <SelectContent>
             {teams.map((team) => (
-              <SelectItem key={team} value={team}>
-                {team}
+              <SelectItem key={team.id} value={team.id}>
+                {team.name}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
-        {errors.team && (
-          <p className="text-xs text-destructive">{errors.team}</p>
-        )}
+        {errors.teamId && <p className="text-xs text-destructive">{errors.teamId}</p>}
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -193,30 +180,13 @@ function ProjectForm({ teams, colors, onCancel, onSubmit }: ProjectFormProps) {
             onChange={(e) => update("dueDate", e.target.value)}
             aria-invalid={!!errors.dueDate}
           />
-          {errors.dueDate && (
-            <p className="text-xs text-destructive">{errors.dueDate}</p>
-          )}
+          {errors.dueDate && <p className="text-xs text-destructive">{errors.dueDate}</p>}
         </div>
       </div>
 
       <div className="space-y-2">
         <Label>Color</Label>
-        <div className="flex gap-2">
-          {colors.map((color) => (
-            <button
-              key={color}
-              type="button"
-              onClick={() => update("color", color)}
-              aria-label={`Use color ${color}`}
-              aria-pressed={values.color === color}
-              className={cn(
-                "size-8 rounded-full ring-offset-2 ring-offset-background transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                values.color === color && "ring-2 ring-foreground",
-              )}
-              style={{ backgroundColor: color }}
-            />
-          ))}
-        </div>
+        <ColorPicker colors={colors} value={values.color} onChange={(c) => update("color", c)} />
       </div>
 
       <DialogFooter className="pt-2">
@@ -226,5 +196,5 @@ function ProjectForm({ teams, colors, onCancel, onSubmit }: ProjectFormProps) {
         <Button type="submit">Create project</Button>
       </DialogFooter>
     </form>
-  );
+  )
 }
