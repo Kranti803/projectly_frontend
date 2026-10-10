@@ -1,9 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from "@tanstack/react-router"
 
-export const Route = createFileRoute('/_app/settings/')({
-  component: RouteComponent,
+export const Route = createFileRoute("/_app/settings/")({
+  beforeLoad: () => {
+    throw redirect({ to: "/settings/general" })
+  },
 })
-
-function RouteComponent() {
-  return <div>Settings Page</div>
-}

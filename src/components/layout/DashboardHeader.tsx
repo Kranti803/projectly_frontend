@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { NotificationBell } from "@/features/notifications/components/NotificationBell";
 
 interface DashboardHeaderProps {
   user: {
@@ -54,7 +55,7 @@ export function DashboardHeader({
           className="relative flex h-9 w-9 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100"
           aria-label="Notifications"
         >
-          <Bell className="h-[18px] w-[18px]" />
+          <NotificationBell/>
           {hasUnreadNotifications && (
             <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-indigo-600 ring-2 ring-white" />
           )}

@@ -1,0 +1,160 @@
+/*
+  Restyles react-big-calendar with your shadcn tokens, so light and dark mode both work.
+  Assumes Tailwind v4 tokens such as var(--border). On Tailwind v3 tokens, wrap them: hsl(var(--border)).
+  Import this AFTER react-big-calendar's own CSS (CalendarGrid.tsx does).
+*/
+
+.rbc-calendar {
+  font-family: inherit;
+  color: var(--foreground);
+}
+
+/* Frames */
+.rbc-month-view,
+.rbc-time-view,
+.rbc-agenda-view {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--card);
+  overflow: hidden;
+}
+
+/* Borders */
+.rbc-header,
+.rbc-header + .rbc-header,
+.rbc-month-row + .rbc-month-row,
+.rbc-day-bg + .rbc-day-bg,
+.rbc-time-header-content,
+.rbc-time-content,
+.rbc-time-content > * + * > *,
+.rbc-timeslot-group,
+.rbc-time-header.rbc-overflowing,
+.rbc-allday-cell,
+.rbc-time-view .rbc-row,
+.rbc-agenda-view table.rbc-agenda-table,
+.rbc-agenda-view table.rbc-agenda-table thead > tr > th,
+.rbc-agenda-view table.rbc-agenda-table tbody > tr > td,
+.rbc-agenda-view table.rbc-agenda-table tbody > tr + tr {
+  border-color: var(--border);
+}
+
+/* Weekday headers */
+.rbc-header {
+  padding: 0.6rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+/* Day cells */
+.rbc-date-cell {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8125rem;
+  text-align: right;
+}
+
+.rbc-date-cell.rbc-now {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.rbc-off-range {
+  color: var(--muted-foreground);
+}
+
+.rbc-off-range-bg {
+  background: color-mix(in oklab, var(--muted) 60%, transparent);
+}
+
+.rbc-today {
+  background: color-mix(in oklab, var(--primary) 8%, transparent);
+}
+
+/* Events: one pill per task, coloured by priority */
+.rbc-event {
+  padding: 2px 6px;
+  border: none;
+  border-radius: 0.375rem;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.rbc-event:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 1px;
+}
+
+.rbc-event.rbc-selected {
+  background: var(--primary);
+  filter: brightness(0.92);
+}
+
+.rbc-event.pm-priority-urgent { background: #f43f5e; }
+.rbc-event.pm-priority-high   { background: #f59e0b; }
+.rbc-event.pm-priority-medium { background: #6366f1; }
+.rbc-event.pm-priority-low    { background: #94a3b8; }
+
+/* Finished tasks fade out and get struck through */
+.rbc-event.pm-event-done {
+  opacity: 0.55;
+  text-decoration: line-through;
+}
+
+.rbc-event-label {
+  display: none;
+}
+
+/* "+2 more" link and its popup */
+.rbc-show-more {
+  background: transparent;
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.rbc-overlay {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--popover);
+  color: var(--popover-foreground);
+  box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.25);
+}
+
+.rbc-overlay-header {
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* Week view */
+.rbc-time-header-gutter,
+.rbc-label {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.rbc-current-time-indicator {
+  background: var(--primary);
+}
+
+/* Agenda view */
+.rbc-agenda-view table.rbc-agenda-table thead > tr > th {
+  padding: 0.6rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.rbc-agenda-view table.rbc-agenda-table tbody > tr > td {
+  padding: 0.6rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+/* Dragging a task over a day */
+.rbc-day-bg.rbc-addons-dnd-over,
+.rbc-addons-dnd .rbc-addons-dnd-over {
+  background: color-mix(in oklab, var(--primary) 15%, transparent);
+}

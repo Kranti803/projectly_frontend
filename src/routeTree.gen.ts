@@ -17,6 +17,7 @@ import { Route as AuthRegisterRouteImport } from './routes/auth/register'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
 import { Route as AuthForgotPasswordRouteImport } from './routes/auth/forgot-password'
 import { Route as AuthEmailVerificationRouteImport } from './routes/auth/email-verification'
+import { Route as AppSettingsRouteRouteImport } from './routes/_app/settings/route'
 import { Route as OrganizationSelectOrganizationIndexRouteImport } from './routes/organization/select-organization/index'
 import { Route as OrganizationCreateIndexRouteImport } from './routes/organization/create/index'
 import { Route as AppTeamsIndexRouteImport } from './routes/_app/teams/index'
@@ -28,7 +29,13 @@ import { Route as AppMembersIndexRouteImport } from './routes/_app/members/index
 import { Route as AppDashboardIndexRouteImport } from './routes/_app/dashboard/index'
 import { Route as AppCalendarIndexRouteImport } from './routes/_app/calendar/index'
 import { Route as AppTeamsTeamIdRouteImport } from './routes/_app/teams/$teamId'
+import { Route as AppSettingsSecurityRouteImport } from './routes/_app/settings/security'
+import { Route as AppSettingsProfileRouteImport } from './routes/_app/settings/profile'
+import { Route as AppSettingsGeneralRouteImport } from './routes/_app/settings/general'
 import { Route as AppProjectsProjectIdRouteImport } from './routes/_app/projects/$projectId'
+import { Route as AppSettingsRolesIndexRouteImport } from './routes/_app/settings/roles/index'
+import { Route as AppSettingsRolesNewRouteImport } from './routes/_app/settings/roles/new'
+import { Route as AppSettingsRolesRoleIdRouteImport } from './routes/_app/settings/roles/$roleId'
 
 const AppRoute = AppRouteImport.update({
   id: '/_app',
@@ -69,6 +76,11 @@ const AuthEmailVerificationRoute = AuthEmailVerificationRouteImport.update({
   path: '/auth/email-verification',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppSettingsRouteRoute = AppSettingsRouteRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
 const OrganizationSelectOrganizationIndexRoute =
   OrganizationSelectOrganizationIndexRouteImport.update({
     id: '/organization/select-organization/',
@@ -91,9 +103,9 @@ const AppTasksIndexRoute = AppTasksIndexRouteImport.update({
   getParentRoute: () => AppRoute,
 } as any)
 const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
-  id: '/settings/',
-  path: '/settings/',
-  getParentRoute: () => AppRoute,
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppSettingsRouteRoute,
 } as any)
 const AppReportsIndexRoute = AppReportsIndexRouteImport.update({
   id: '/reports/',
@@ -125,14 +137,45 @@ const AppTeamsTeamIdRoute = AppTeamsTeamIdRouteImport.update({
   path: '/teams/$teamId',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSettingsSecurityRoute = AppSettingsSecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => AppSettingsRouteRoute,
+} as any)
+const AppSettingsProfileRoute = AppSettingsProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppSettingsRouteRoute,
+} as any)
+const AppSettingsGeneralRoute = AppSettingsGeneralRouteImport.update({
+  id: '/general',
+  path: '/general',
+  getParentRoute: () => AppSettingsRouteRoute,
+} as any)
 const AppProjectsProjectIdRoute = AppProjectsProjectIdRouteImport.update({
   id: '/projects/$projectId',
   path: '/projects/$projectId',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSettingsRolesIndexRoute = AppSettingsRolesIndexRouteImport.update({
+  id: '/roles/',
+  path: '/roles/',
+  getParentRoute: () => AppSettingsRouteRoute,
+} as any)
+const AppSettingsRolesNewRoute = AppSettingsRolesNewRouteImport.update({
+  id: '/roles/new',
+  path: '/roles/new',
+  getParentRoute: () => AppSettingsRouteRoute,
+} as any)
+const AppSettingsRolesRoleIdRoute = AppSettingsRolesRoleIdRouteImport.update({
+  id: '/roles/$roleId',
+  path: '/roles/$roleId',
+  getParentRoute: () => AppSettingsRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/settings': typeof AppSettingsRouteRouteWithChildren
   '/auth/email-verification': typeof AuthEmailVerificationRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
@@ -140,6 +183,9 @@ export interface FileRoutesByFullPath {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/organization/': typeof OrganizationIndexRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
+  '/settings/general': typeof AppSettingsGeneralRoute
+  '/settings/profile': typeof AppSettingsProfileRoute
+  '/settings/security': typeof AppSettingsSecurityRoute
   '/teams/$teamId': typeof AppTeamsTeamIdRoute
   '/calendar/': typeof AppCalendarIndexRoute
   '/dashboard/': typeof AppDashboardIndexRoute
@@ -151,6 +197,9 @@ export interface FileRoutesByFullPath {
   '/teams/': typeof AppTeamsIndexRoute
   '/organization/create/': typeof OrganizationCreateIndexRoute
   '/organization/select-organization/': typeof OrganizationSelectOrganizationIndexRoute
+  '/settings/roles/$roleId': typeof AppSettingsRolesRoleIdRoute
+  '/settings/roles/new': typeof AppSettingsRolesNewRoute
+  '/settings/roles/': typeof AppSettingsRolesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -161,6 +210,9 @@ export interface FileRoutesByTo {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/organization': typeof OrganizationIndexRoute
   '/projects/$projectId': typeof AppProjectsProjectIdRoute
+  '/settings/general': typeof AppSettingsGeneralRoute
+  '/settings/profile': typeof AppSettingsProfileRoute
+  '/settings/security': typeof AppSettingsSecurityRoute
   '/teams/$teamId': typeof AppTeamsTeamIdRoute
   '/calendar': typeof AppCalendarIndexRoute
   '/dashboard': typeof AppDashboardIndexRoute
@@ -172,11 +224,15 @@ export interface FileRoutesByTo {
   '/teams': typeof AppTeamsIndexRoute
   '/organization/create': typeof OrganizationCreateIndexRoute
   '/organization/select-organization': typeof OrganizationSelectOrganizationIndexRoute
+  '/settings/roles/$roleId': typeof AppSettingsRolesRoleIdRoute
+  '/settings/roles/new': typeof AppSettingsRolesNewRoute
+  '/settings/roles': typeof AppSettingsRolesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
+  '/_app/settings': typeof AppSettingsRouteRouteWithChildren
   '/auth/email-verification': typeof AuthEmailVerificationRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
@@ -184,6 +240,9 @@ export interface FileRoutesById {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/organization/': typeof OrganizationIndexRoute
   '/_app/projects/$projectId': typeof AppProjectsProjectIdRoute
+  '/_app/settings/general': typeof AppSettingsGeneralRoute
+  '/_app/settings/profile': typeof AppSettingsProfileRoute
+  '/_app/settings/security': typeof AppSettingsSecurityRoute
   '/_app/teams/$teamId': typeof AppTeamsTeamIdRoute
   '/_app/calendar/': typeof AppCalendarIndexRoute
   '/_app/dashboard/': typeof AppDashboardIndexRoute
@@ -195,11 +254,15 @@ export interface FileRoutesById {
   '/_app/teams/': typeof AppTeamsIndexRoute
   '/organization/create/': typeof OrganizationCreateIndexRoute
   '/organization/select-organization/': typeof OrganizationSelectOrganizationIndexRoute
+  '/_app/settings/roles/$roleId': typeof AppSettingsRolesRoleIdRoute
+  '/_app/settings/roles/new': typeof AppSettingsRolesNewRoute
+  '/_app/settings/roles/': typeof AppSettingsRolesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/settings'
     | '/auth/email-verification'
     | '/auth/forgot-password'
     | '/auth/login'
@@ -207,6 +270,9 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/organization/'
     | '/projects/$projectId'
+    | '/settings/general'
+    | '/settings/profile'
+    | '/settings/security'
     | '/teams/$teamId'
     | '/calendar/'
     | '/dashboard/'
@@ -218,6 +284,9 @@ export interface FileRouteTypes {
     | '/teams/'
     | '/organization/create/'
     | '/organization/select-organization/'
+    | '/settings/roles/$roleId'
+    | '/settings/roles/new'
+    | '/settings/roles/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -228,6 +297,9 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/organization'
     | '/projects/$projectId'
+    | '/settings/general'
+    | '/settings/profile'
+    | '/settings/security'
     | '/teams/$teamId'
     | '/calendar'
     | '/dashboard'
@@ -239,10 +311,14 @@ export interface FileRouteTypes {
     | '/teams'
     | '/organization/create'
     | '/organization/select-organization'
+    | '/settings/roles/$roleId'
+    | '/settings/roles/new'
+    | '/settings/roles'
   id:
     | '__root__'
     | '/'
     | '/_app'
+    | '/_app/settings'
     | '/auth/email-verification'
     | '/auth/forgot-password'
     | '/auth/login'
@@ -250,6 +326,9 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/organization/'
     | '/_app/projects/$projectId'
+    | '/_app/settings/general'
+    | '/_app/settings/profile'
+    | '/_app/settings/security'
     | '/_app/teams/$teamId'
     | '/_app/calendar/'
     | '/_app/dashboard/'
@@ -261,6 +340,9 @@ export interface FileRouteTypes {
     | '/_app/teams/'
     | '/organization/create/'
     | '/organization/select-organization/'
+    | '/_app/settings/roles/$roleId'
+    | '/_app/settings/roles/new'
+    | '/_app/settings/roles/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -334,6 +416,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthEmailVerificationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/organization/select-organization/': {
       id: '/organization/select-organization/'
       path: '/organization/select-organization'
@@ -364,10 +453,10 @@ declare module '@tanstack/react-router' {
     }
     '/_app/settings/': {
       id: '/_app/settings/'
-      path: '/settings'
+      path: '/'
       fullPath: '/settings/'
       preLoaderRoute: typeof AppSettingsIndexRouteImport
-      parentRoute: typeof AppRoute
+      parentRoute: typeof AppSettingsRouteRoute
     }
     '/_app/reports/': {
       id: '/_app/reports/'
@@ -411,6 +500,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppTeamsTeamIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/settings/security': {
+      id: '/_app/settings/security'
+      path: '/security'
+      fullPath: '/settings/security'
+      preLoaderRoute: typeof AppSettingsSecurityRouteImport
+      parentRoute: typeof AppSettingsRouteRoute
+    }
+    '/_app/settings/profile': {
+      id: '/_app/settings/profile'
+      path: '/profile'
+      fullPath: '/settings/profile'
+      preLoaderRoute: typeof AppSettingsProfileRouteImport
+      parentRoute: typeof AppSettingsRouteRoute
+    }
+    '/_app/settings/general': {
+      id: '/_app/settings/general'
+      path: '/general'
+      fullPath: '/settings/general'
+      preLoaderRoute: typeof AppSettingsGeneralRouteImport
+      parentRoute: typeof AppSettingsRouteRoute
+    }
     '/_app/projects/$projectId': {
       id: '/_app/projects/$projectId'
       path: '/projects/$projectId'
@@ -418,10 +528,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProjectsProjectIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/settings/roles/': {
+      id: '/_app/settings/roles/'
+      path: '/roles'
+      fullPath: '/settings/roles/'
+      preLoaderRoute: typeof AppSettingsRolesIndexRouteImport
+      parentRoute: typeof AppSettingsRouteRoute
+    }
+    '/_app/settings/roles/new': {
+      id: '/_app/settings/roles/new'
+      path: '/roles/new'
+      fullPath: '/settings/roles/new'
+      preLoaderRoute: typeof AppSettingsRolesNewRouteImport
+      parentRoute: typeof AppSettingsRouteRoute
+    }
+    '/_app/settings/roles/$roleId': {
+      id: '/_app/settings/roles/$roleId'
+      path: '/roles/$roleId'
+      fullPath: '/settings/roles/$roleId'
+      preLoaderRoute: typeof AppSettingsRolesRoleIdRouteImport
+      parentRoute: typeof AppSettingsRouteRoute
+    }
   }
 }
 
+interface AppSettingsRouteRouteChildren {
+  AppSettingsGeneralRoute: typeof AppSettingsGeneralRoute
+  AppSettingsProfileRoute: typeof AppSettingsProfileRoute
+  AppSettingsSecurityRoute: typeof AppSettingsSecurityRoute
+  AppSettingsIndexRoute: typeof AppSettingsIndexRoute
+  AppSettingsRolesRoleIdRoute: typeof AppSettingsRolesRoleIdRoute
+  AppSettingsRolesNewRoute: typeof AppSettingsRolesNewRoute
+  AppSettingsRolesIndexRoute: typeof AppSettingsRolesIndexRoute
+}
+
+const AppSettingsRouteRouteChildren: AppSettingsRouteRouteChildren = {
+  AppSettingsGeneralRoute: AppSettingsGeneralRoute,
+  AppSettingsProfileRoute: AppSettingsProfileRoute,
+  AppSettingsSecurityRoute: AppSettingsSecurityRoute,
+  AppSettingsIndexRoute: AppSettingsIndexRoute,
+  AppSettingsRolesRoleIdRoute: AppSettingsRolesRoleIdRoute,
+  AppSettingsRolesNewRoute: AppSettingsRolesNewRoute,
+  AppSettingsRolesIndexRoute: AppSettingsRolesIndexRoute,
+}
+
+const AppSettingsRouteRouteWithChildren =
+  AppSettingsRouteRoute._addFileChildren(AppSettingsRouteRouteChildren)
+
 interface AppRouteChildren {
+  AppSettingsRouteRoute: typeof AppSettingsRouteRouteWithChildren
   AppProjectsProjectIdRoute: typeof AppProjectsProjectIdRoute
   AppTeamsTeamIdRoute: typeof AppTeamsTeamIdRoute
   AppCalendarIndexRoute: typeof AppCalendarIndexRoute
@@ -429,12 +584,12 @@ interface AppRouteChildren {
   AppMembersIndexRoute: typeof AppMembersIndexRoute
   AppProjectsIndexRoute: typeof AppProjectsIndexRoute
   AppReportsIndexRoute: typeof AppReportsIndexRoute
-  AppSettingsIndexRoute: typeof AppSettingsIndexRoute
   AppTasksIndexRoute: typeof AppTasksIndexRoute
   AppTeamsIndexRoute: typeof AppTeamsIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppSettingsRouteRoute: AppSettingsRouteRouteWithChildren,
   AppProjectsProjectIdRoute: AppProjectsProjectIdRoute,
   AppTeamsTeamIdRoute: AppTeamsTeamIdRoute,
   AppCalendarIndexRoute: AppCalendarIndexRoute,
@@ -442,7 +597,6 @@ const AppRouteChildren: AppRouteChildren = {
   AppMembersIndexRoute: AppMembersIndexRoute,
   AppProjectsIndexRoute: AppProjectsIndexRoute,
   AppReportsIndexRoute: AppReportsIndexRoute,
-  AppSettingsIndexRoute: AppSettingsIndexRoute,
   AppTasksIndexRoute: AppTasksIndexRoute,
   AppTeamsIndexRoute: AppTeamsIndexRoute,
 }

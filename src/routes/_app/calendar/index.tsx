@@ -1,9 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router"
 
-export const Route = createFileRoute('/_app/calendar/')({
-  component: RouteComponent,
+import { CalendarPage } from "@/features/calendar/components/CalendarPage"
+
+// Keep the path string your existing route file already uses if it differs.
+export const Route = createFileRoute("/_app/calendar/")({
+  component: CalendarPage,
 })
-
-function RouteComponent() {
-  return <div>Hello "/_app/calendar/"!</div>
-}
