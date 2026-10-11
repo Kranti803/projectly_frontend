@@ -54,7 +54,7 @@ export function CalendarGrid({
   onEventDrop,
 }: CalendarGridProps) {
   return (
-    <div className="h-[calc(100vh-18rem)] min-h-[560px]">
+    <div className="h-[calc(100vh-18rem)] min-h-140">
       <DnDCalendar
         localizer={localizer}
         events={events}
